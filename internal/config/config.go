@@ -25,6 +25,8 @@ func Read() (*Config, error) {
 	if err != nil {
 		return &Config{}, fmt.Errorf("open: %w", err)
 	}
+	defer file.Close()
+
 	data, err := io.ReadAll(file)
 	if err != nil {
 		return &Config{}, fmt.Errorf("readAll: %w", err)
